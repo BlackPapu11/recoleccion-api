@@ -35,6 +35,19 @@ class RecoleccionController extends Controller
         return $this->getResponse403();
     }
 
+    public function updateStatus2($id)
+    {
+        $recoleccion = Recoleccion::find($id);
+        if ($recoleccion->usuario_id == auth()->user()->id) {
+            if ($recoleccion->status < 3) {
+                $recoleccion->status = 2;
+                $recoleccion->update();
+            }
+            return $this->getResponse200($recoleccion);
+        }
+        return $this->getResponse403();
+    }
+
     public function origenDestino($id)
     {
         $recoleccion = DB::select('SELECT cc.nombre AS cadena, ba.nombre AS banco FROM recolecciones r INNER JOIN almacenes alc ON alc.id = r.almacen_id INNER JOIN cadenas_comerciales cc ON cc.id = alc.cadena_comercial_id INNER JOIN users u ON u.id = r.usuario_id INNER JOIN municipios m ON m.id = u.municipio_id INNER JOIN banco_alimentos ba ON ba.municipio_id = m.id WHERE r.id = ?', [$id]);

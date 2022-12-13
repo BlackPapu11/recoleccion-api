@@ -30,8 +30,8 @@ class RecoleccionAlimentosController extends Controller
         $recoleccion = new RecoleccionAlimentos();
         $recoleccion->recoleccion_id = $request->recoleccion_id;
         $recoleccion->alimento_id = $request->alimento_id;
-        $recoleccion->comentarios = null;
-        $recoleccion->foto = null;
+        $recoleccion->comentarios = "";
+        $recoleccion->foto = "";
         $tmpRec = Recoleccion::find($request->recoleccion_id);
         if ($tmpRec->status == 1) {
             $tmpRec->status = 2;
