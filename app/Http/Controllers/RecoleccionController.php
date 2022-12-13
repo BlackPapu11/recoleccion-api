@@ -35,14 +35,12 @@ class RecoleccionController extends Controller
         return $this->getResponse403();
     }
 
-    public function updateStatus2($id)
+    public function setStatus2($id)
     {
         $recoleccion = Recoleccion::find($id);
         if ($recoleccion->usuario_id == auth()->user()->id) {
-            if ($recoleccion->status < 3) {
-                $recoleccion->status = 2;
-                $recoleccion->update();
-            }
+            $recoleccion->status = 2;
+            $recoleccion->update();
             return $this->getResponse200($recoleccion);
         }
         return $this->getResponse403();

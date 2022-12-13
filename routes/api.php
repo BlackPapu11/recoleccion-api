@@ -121,7 +121,7 @@ Route::group(['middleware' => ["auth:sanctum"]], function () {
     Route::get('logout', [AuthController::class, 'logout']);
     Route::get('recolecciones-usuario', [RecoleccionController::class, 'recoleccionesUsuario']);
     Route::get('actualizar-estatus-recoleccion/{id}', [RecoleccionController::class, 'updateStatus']);
-    Route::get('actualizar-estatus-recoleccion2/{id}', [RecoleccionController::class, 'updateStatus']);
+    Route::get('estatus-recoleccion2/{id}', [RecoleccionController::class, 'setStatus2']);
     Route::get('recolectados/{id}', [RecoleccionAlimentosController::class, 'alimentosRecolectados']);
 });
 
