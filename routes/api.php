@@ -107,7 +107,7 @@ Route::prefix('recoleccion')->group(function(){
 Route::prefix('recoleccion_alimentos')->group(function() {
     Route::get('index', [RecoleccionAlimentosController::class, 'index']);
     Route::post('store', [RecoleccionAlimentosController::class, 'store']);
-    Route::put('update', [RecoleccionAlimentosController::class, 'update']);
+    Route::put('update/{id}', [RecoleccionAlimentosController::class, 'update']);
     Route::get('show/{id}', [RecoleccionAlimentosController::class, 'show']);
 });
 
