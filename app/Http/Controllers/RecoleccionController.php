@@ -18,7 +18,7 @@ class RecoleccionController extends Controller
     public function recoleccionesUsuario()
     {
         //$recolecciones = Recoleccion::with('usuario', 'almacen')->where('usuario_id', auth()->user()->id)->orderBy('id', 'asc')->get();
-        $recolecciones = DB::select('SELECT r.status, r.id, r.usuario_id, cc.nombre, a.id AS almacen FROM recolecciones r INNER JOIN almacenes a ON a.id = r.almacen_id INNER JOIN cadenas_comerciales cc ON cc.id = a.cadena_comercial_id WHERE r.usuario_id = ?', [auth()->user()->id]);
+        $recolecciones = DB::select('SELECT r.status, r.id, r.usuario_id, cc.nombre, cc.id AS cadena FROM recolecciones r INNER JOIN almacenes a ON a.id = r.almacen_id INNER JOIN cadenas_comerciales cc ON cc.id = a.cadena_comercial_id WHERE r.usuario_id = ?', [auth()->user()->id]);
         return $this->getResponse200($recolecciones);
     }
 
