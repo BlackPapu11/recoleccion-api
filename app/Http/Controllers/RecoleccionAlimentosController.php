@@ -87,21 +87,4 @@ class RecoleccionAlimentosController extends Controller
            // DB::rollBack();
         }
     }
-
-    public function updateTest(Request $request)
-    {
-        try {
-            $recoleccion = RecoleccionAlimentos::find($request->id);
-            if ($recoleccion) {
-                $recoleccion->comentarios = $request->comentarios;
-                $recoleccion->foto = $request->foto;
-                $recoleccion->update();
-                return $this->getResponse201("RecoleccionAlimentos", "updated", $recoleccion);
-            } else {
-                return $this->getResponse404();
-            }
-        } catch (Exception $e) {
-            return $this->getResponse500($e->getMessage());
-        }
-    }
 }
