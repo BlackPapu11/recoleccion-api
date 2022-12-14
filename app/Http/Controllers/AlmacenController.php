@@ -17,7 +17,7 @@ class AlmacenController extends Controller
 
     public function alimentosAlmacen($id) {
         //$alimentos = DB::select('SELECT ali.nombre FROM recolecciones r INNER JOIN almacenes a ON a.id = r.almacen_id INNER JOIN cadenas_comerciales cc ON cc.id = a.cadena_comercial_id INNER JOIN almacenes a2 ON a2.cadena_comercial_id = cc.id INNER JOIN alimentos ali ON ali.id = a2.alimentos_id WHERE r.usuario_id = ? AND r.id = ?',)
-        $alimentos = DB::select('SELECT al.nombre, al.id FROM almacenes a INNER JOIN alimentos al ON al.id = a.alimentos_id WHERE a.id = ?', [$id]);
+        $alimentos = DB::select('SELECT al.nombre, al.id FROM almacenes a INNER JOIN alimentos al ON al.id = a.alimentos_id WHERE a.cadena_comercial_id = ?', [$id]);
         return $this->getResponse200($alimentos);
     }
 
