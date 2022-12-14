@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Recoleccion;
 use App\Models\RecoleccionAlimentos;
+use FFI\Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -84,6 +85,23 @@ class RecoleccionAlimentosController extends Controller
         } catch (Exception $e) {
             return $this->getResponse500($e->getMessage());
            // DB::rollBack();
+        }
+    }
+
+    public function updateTest(Request $request)
+    {
+        try {
+            $recoleccion = RecoleccionAlimentos::find($request->id);
+            if ($recoleccion) {
+                $recoleccion->comentarios = $request->comentarios;
+                $recoleccion->foto = $request->foto;
+                $recoleccion->update();
+                return $this->getResponse201("RecoleccionAlimentos", "updated", $recoleccion);
+            } else {
+                return $this->getResponse404();
+            }
+        } catch (Exception $e) {
+            return $this->getResponse500($e->getMessage());
         }
     }
 }
